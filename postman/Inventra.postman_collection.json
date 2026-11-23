@@ -1,0 +1,546 @@
+{
+  "info": {
+    "name": "Inventra API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000/api"
+    },
+    {
+      "key": "category_id",
+      "value": ""
+    },
+    {
+      "key": "barang_id",
+      "value": ""
+    },
+    {
+      "key": "transaksi_id",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Kategori",
+      "item": [
+        {
+          "name": "GET semua kategori",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            }
+          }
+        },
+        {
+          "name": "POST kategori",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Kategori Uji\",\n  \"description\": \"Dibuat dari Postman\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const j = pm.response.json();",
+                  "if (j.data && j.data.id) pm.collectionVariables.set('category_id', j.data.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET kategori by id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/categories/{{category_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "categories",
+                "{{category_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "PUT kategori",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/categories/{{category_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "categories",
+                "{{category_id}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Kategori Uji (Diubah)\",\n  \"description\": \"Deskripsi diubah\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Barang",
+      "item": [
+        {
+          "name": "GET semua barang",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/barang",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "barang"
+              ]
+            }
+          }
+        },
+        {
+          "name": "POST barang",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/barang",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "barang"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"kode_barang\": \"BRG-{{$randomInt}}\",\n  \"nama_barang\": \"Mouse Logitech\",\n  \"deskripsi\": \"Mouse wireless\",\n  \"category_id\": \"{{category_id}}\",\n  \"lokasi\": \"Lab Komputer\",\n  \"kondisi\": \"Baik\",\n  \"jumlah\": 10,\n  \"satuan\": \"Unit\",\n  \"tanggal_masuk\": \"2026-11-19\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const j = pm.response.json();",
+                  "if (j.data && j.data.id) pm.collectionVariables.set('barang_id', j.data.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET barang by id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/barang/{{barang_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "barang",
+                "{{barang_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "PUT barang",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/barang/{{barang_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "barang",
+                "{{barang_id}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"kode_barang\": \"BRG-EDIT-{{$randomInt}}\",\n  \"nama_barang\": \"Mouse Logitech M185\",\n  \"deskripsi\": \"Mouse wireless (diubah)\",\n  \"category_id\": \"{{category_id}}\",\n  \"lokasi\": \"Ruang Server\",\n  \"kondisi\": \"Rusak Ringan\",\n  \"jumlah\": 10,\n  \"satuan\": \"Unit\",\n  \"tanggal_masuk\": \"2026-11-19\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Transaksi",
+      "item": [
+        {
+          "name": "GET semua transaksi",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/transaksi",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "transaksi"
+              ]
+            }
+          }
+        },
+        {
+          "name": "POST transaksi - Barang Masuk",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/transaksi",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "transaksi"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"barang_id\": \"{{barang_id}}\",\n  \"jenis_transaksi\": \"Barang Masuk\",\n  \"jumlah\": 5,\n  \"keterangan\": \"Pembelian baru\",\n  \"tanggal_transaksi\": \"2026-11-19\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const j = pm.response.json();",
+                  "if (j.data && j.data.id) pm.collectionVariables.set('transaksi_id', j.data.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST transaksi - Barang Keluar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/transaksi",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "transaksi"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"barang_id\": \"{{barang_id}}\",\n  \"jenis_transaksi\": \"Barang Keluar\",\n  \"jumlah\": 3,\n  \"keterangan\": \"Dipinjam lab\",\n  \"tanggal_transaksi\": \"2026-11-20\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST transaksi - Keluar melebihi stok (harus 400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/transaksi",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "transaksi"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"barang_id\": \"{{barang_id}}\",\n  \"jenis_transaksi\": \"Barang Keluar\",\n  \"jumlah\": 9999,\n  \"keterangan\": \"Uji validasi stok\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET transaksi by id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/transaksi/{{transaksi_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "transaksi",
+                "{{transaksi_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "PUT transaksi",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/transaksi/{{transaksi_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "transaksi",
+                "{{transaksi_id}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jenis_transaksi\": \"Barang Masuk\",\n  \"jumlah\": 6,\n  \"keterangan\": \"Jumlah dikoreksi\",\n  \"tanggal_transaksi\": \"2026-11-19\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE transaksi",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/transaksi/{{transaksi_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "transaksi",
+                "{{transaksi_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Dashboard",
+      "item": [
+        {
+          "name": "GET dashboard",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/dashboard",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "dashboard"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Hapus data uji",
+      "item": [
+        {
+          "name": "DELETE barang",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/barang/{{barang_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "barang",
+                "{{barang_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "DELETE kategori",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/categories/{{category_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "categories",
+                "{{category_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

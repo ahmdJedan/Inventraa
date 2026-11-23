@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Inventra – Sistem Inventaris Barang</title>
+  <meta name="description" content="Aplikasi inventaris barang untuk organisasi, laboratorium, kantor, atau kampus." />
+  <meta name="theme-color" content="#0D2B5B" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- Sidebar: hanya tampil di DESKTOP (layar >= 900px) -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <span class="logo-sm">📦</span>
+        <div><strong>INVENTRA</strong><small>Sistem Inventaris Barang Di Gedung</small></div>
+      </div>
+      <nav class="side-nav">
+        <a href="#/" data-tab="home"><span class="ico">🏠</span>Home</a>
+        <a href="#/barang" data-tab="barang"><span class="ico">📦</span>Barang</a>
+        <a href="#/kategori" data-tab="kategori"><span class="ico">🗂️</span>Kategori</a>
+        <a href="#/profile" data-tab="profile"><span class="ico">👤</span>Profile</a>
+      </nav>
+      
+    </aside>
+
+    <div class="main">
+      <div id="view"></div>
+    </div>
+
+    <!-- Bottom Navigation Bar: hanya tampil di HP (layar < 900px) -->
+    <nav class="bottom-nav" id="bottom-nav">
+      <a href="#/" data-tab="home"><span class="ico">🏠</span><span>Home</span></a>
+      <a href="#/barang" data-tab="barang" data-also="kategori"><span class="ico">📦</span><span>Barang</span></a>
+      <a href="#/transaksi" data-tab="transaksi"><span class="ico">🔄</span><span>Transaksi</span></a>
+      <a href="#/profile" data-tab="profile"><span class="ico">👤</span><span>Profile</span></a>
+    </nav>
+
+    <div id="snack" class="snack" role="status" aria-live="polite"></div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch((e) => console.warn('SW gagal:', e));
+      });
+    }
+  </script>
+</body>
+</html>
