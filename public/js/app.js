@@ -2,6 +2,8 @@ import { render as home } from './pages/home.js';
 import { render as barang } from './pages/barang.js';
 import { render as barangDetail } from './pages/barangDetail.js';
 import { render as barangForm } from './pages/barangForm.js';
+import { render as ruangan } from './pages/ruangan.js';
+import { render as ruanganDetail } from './pages/ruanganDetail.js';
 import { render as kategori } from './pages/kategori.js';
 import { render as kategoriDetail } from './pages/kategoriDetail.js';
 import { render as kategoriForm } from './pages/kategoriForm.js';
@@ -17,6 +19,8 @@ const routes = [
   [/^\/barang\/tambah$/, barangForm, 'barang'],
   [/^\/barang\/edit\/([^/]+)$/, barangForm, 'barang'],
   [/^\/barang\/([^/]+)$/, barangDetail, 'barang'],
+  [/^\/ruangan$/, ruangan, 'ruangan'],
+  [/^\/ruangan\/([^/]+)$/, ruanganDetail, 'ruangan'],
   [/^\/kategori$/, kategori, 'kategori'],
   [/^\/kategori\/tambah$/, kategoriForm, 'kategori'],
   [/^\/kategori\/edit\/([^/]+)$/, kategoriForm, 'kategori'],
