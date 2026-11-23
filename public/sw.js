@@ -1,7 +1,7 @@
 // Service Worker Inventra
 // - App shell (HTML/CSS/JS) disimpan di cache agar aplikasi tetap terbuka saat offline.
 // - Data inventaris (/api/...) TIDAK disimpan di cache: selalu diambil dari REST API.
-const CACHE = 'inventra-v5';
+const CACHE = 'inventra-v6';
 
 const SHELL = [
   './',
@@ -19,6 +19,8 @@ const SHELL = [
   './js/pages/barang.js',
   './js/pages/barangDetail.js',
   './js/pages/barangForm.js',
+  './js/pages/ruangan.js',
+  './js/pages/ruanganDetail.js',
   './js/pages/kategori.js',
   './js/pages/kategoriDetail.js',
   './js/pages/kategoriForm.js',
