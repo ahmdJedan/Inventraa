@@ -13,6 +13,8 @@ export function render(view) {
       <div class="shortcuts">
       <a class="card shortcut" href="#/barang"><span class="avatar soft">📦</span>
         <div><strong>Data Barang</strong><span>Lihat dan kelola barang</span></div><span class="chev">›</span></a>
+      <a class="card shortcut" href="#/ruangan"><span class="avatar soft">🏢</span>
+        <div><strong>Ruangan Gedung</strong><span>Pantau barang per ruangan</span></div><span class="chev">›</span></a>
       <a class="card shortcut" href="#/kategori"><span class="avatar soft">🗂️</span>
         <div><strong>Kategori</strong><span>Kelola kategori barang</span></div><span class="chev">›</span></a>
       </div>
