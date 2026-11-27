@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Inventra</string>
+    <string name="title_activity_main">Inventra</string>
+    <string name="package_name">com.inventra.app</string>
+    <string name="custom_url_scheme">com.inventra.app</string>
+</resources>
