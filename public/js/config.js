@@ -1,16 +1,36 @@
-// Satu-satunya tempat untuk mengatur Base URL API.
-//
-// - Web PWA: default "/api" (PWA dan API satu domain).
-// - Android APK: membaca URL dari localStorage (bisa diubah di menu Profile),
-//   atau default ke backend Vercel / IP server lokal.
+// Konfigurasi API & Supabase Database untuk Inventra
 
-export function getBaseUrl() {
-  const custom = localStorage.getItem('INVENTRA_API_URL');
-  if (custom && custom.trim()) {
-    return custom.trim().replace(/\/+$/, '');
-  }
+// Supabase Cloud Credentials (Publishable anon key - aman untuk client/APK)
+export const SUPABASE_URL = "https://nhxeqxlxlspkxwdahzzl.supabase.co";
+export const SUPABASE_KEY = "sb_publishable_ZXkHQgs00cvWvKLilnlRIQ_h3Kak09s";
 
-  // Deteksi apakah sedang berjalan di dalam APK Android (Capacitor/WebView)
+// Daftar ruangan resmi di dalam gedung kantor
+export const DAFTAR_LOKASI = [
+  'Lobby / Resepsionis',
+  'Ruang Kerja',
+  'Ruang Rapat',
+  'Ruang Direktur',
+  'Ruang Server',
+  'Ruang Arsip',
+  'Gudang',
+  'Pantry',
+  'Toilet',
+  'Mushola',
+  'Ruang Istirahat',
+  'Koridor',
+];
+
+/**
+ * Mengetahui mode koneksi API:
+ * - 'supabase': Terhubung langsung ke Supabase Cloud (Default & Rekomendasi di APK Android)
+ * - 'custom'  : Menggunakan server Express / Vercel eksternal
+ * - 'auto'    : Mencoba Express /api terlebih dahulu, otomatis fallback ke Supabase
+ */
+export function getApiMode() {
+  const customMode = localStorage.getItem('INVENTRA_API_MODE');
+  if (customMode) return customMode;
+
+  // Di APK Android (Capacitor/WebView), langsung gunakan Supabase Cloud agar 100% online
   const isApk =
     typeof window !== 'undefined' &&
     (window.Capacitor != null ||
@@ -18,23 +38,21 @@ export function getBaseUrl() {
       window.location.protocol === 'file:' ||
       (window.location.hostname === 'localhost' && !window.location.port));
 
-  if (isApk) {
-    return 'https://inventraa.vercel.app/api';
-  }
-
-  return '/api';
+  return isApk ? 'supabase' : 'auto';
 }
 
-export const BASE_URL = getBaseUrl();
+export function getCustomApiUrl() {
+  return localStorage.getItem('INVENTRA_CUSTOM_API') || '';
+}
 
-export function setApiUrl(url) {
-  if (!url || !url.trim()) {
-    localStorage.removeItem('INVENTRA_API_URL');
+export function setApiConfig(mode, customUrl = '') {
+  localStorage.setItem('INVENTRA_API_MODE', mode);
+  if (customUrl) {
+    localStorage.setItem('INVENTRA_CUSTOM_API', customUrl.trim().replace(/\/+$/, ''));
   } else {
-    localStorage.setItem('INVENTRA_API_URL', url.trim().replace(/\/+$/, ''));
+    localStorage.removeItem('INVENTRA_CUSTOM_API');
   }
 }
 
-export function getStoredApiUrl() {
-  return localStorage.getItem('INVENTRA_API_URL') || '';
-}
+// Kompatibilitas dengan kode lama
+export const BASE_URL = getApiMode() === 'supabase' ? 'Supabase Cloud Database' : (getCustomApiUrl() || '/api');
